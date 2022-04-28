@@ -1,21 +1,19 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+
 import React from "react";
 
+const Valid = () => {
+  return (
+    <div
+      css={css`
+        background: red;
+        color: white;
+      `}
+    >
+      Hello world
+    </div>
+  );
+};
 
-
-
-
-const Valid=()=> {
-  
-  
-  
-  
-    return (
-      <h1>Welcome</h1>
-       
-      
-      
-    );
-  }
-  
-  export default Valid;
-  
+export default Valid;

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
-import "./Login.css";
+// import "./Login.css";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 
 function Login() {
   const [login, setlogin] = useState({
@@ -28,15 +30,70 @@ function Login() {
 
   return (
     <>
-      <div className="login">
-        <Grid className="container">
-          <Grid.Column mobile={16} tablet={8} computer={4}>
-            <h2>Login</h2>
+      <div
+        css={css`
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 100vh;
+          align-items: center;
+          font-family: sans-serif;
+        `}
+      >
+        <Grid
+          css={css`
+            width: 30%;
+            height: 50%;
+            display: flex;
+            justify-content: center;
 
-            <Form className="login_form">
-              <Form.Field>
-                <label>Email</label>
+            box-shadow: 5px 10px 18px gray;
+          `}
+        >
+          <Grid.Column mobile={16} tablet={8} computer={4}>
+            <h2
+              css={css`
+                font-size: 32px;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                letter-spacing: -1px;
+                margin-left: 30%;
+              `}
+            >
+              Login
+            </h2>
+
+            <Form
+              css={css`
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+              `}
+            >
+              <Form.Field
+                css={css`
+                  margin-left: 10%;
+                `}
+              >
+                <label
+                  css={css`
+                    margin: 10px;
+                  `}
+                >
+                  Email
+                </label>
                 <input
+                  css={css`
+                    min-width: 200px;
+                    padding: 10px;
+                    padding-left: 10px;
+                    margin-bottom: 15px;
+                    outline: none;
+                    border: 1px solid rgba(0, 0, 0, 0.24);
+                    font-family: sans-serif;
+                    border-radius: 2px;
+                    font-size: 15px;
+                  `}
                   className="input"
                   type="email"
                   name="email"
@@ -45,9 +102,30 @@ function Login() {
                   onChange={handlechange}
                 />
               </Form.Field>
-              <Form.Field>
-                <label>Password</label>
+              <Form.Field
+                css={css`
+                  margin-left: 10%;
+                `}
+              >
+                <label
+                  css={css`
+                    margin: 10px;
+                  `}
+                >
+                  Password
+                </label>
                 <input
+                  css={css`
+                    min-width: 200px;
+                    padding: 10px;
+                    padding-left: 10px;
+                    margin-bottom: 15px;
+                    outline: none;
+                    border: 1px solid rgba(0, 0, 0, 0.24);
+                    font-family: sans-serif;
+                    border-radius: 2px;
+                    font-size: 15px;
+                  `}
                   type="password"
                   name="password"
                   placeholder="password"
@@ -56,7 +134,23 @@ function Login() {
                 />
               </Form.Field>
 
-              <Button className="btn" type="submit">
+              <Button
+                type="submit"
+                css={css`
+                  justify-content: center;
+                  width: 30%;
+                  margin-bottom: 10px;
+                  margin-left: 30%;
+
+                  padding: 10px;
+                  border-radius: 10px;
+                  cursor: pointer;
+                  &:hover {
+                    background-color: rgba(0, 0, 0, 0.24);
+                    color: #fff;
+                  }
+                `}
+              >
                 Submit
               </Button>
             </Form>
