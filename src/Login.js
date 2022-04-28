@@ -5,6 +5,32 @@ import { Grid } from "semantic-ui-react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
+const Input = css`
+  min-width: 200px;
+  padding: 10px;
+  padding-left: 10px;
+  margin-bottom: 15px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  font-family: sans-serif;
+  border-radius: 2px;
+  font-size: 15px;
+`;
+
+const BUTTON = css`
+  justify-content: center;
+  width: 30%;
+  margin-bottom: 10px;
+  margin-left: 30%;
+
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  &: hover {
+    background-color: rgba(0, 0, 0, 0.24);
+  }
+`;
+
 function Login() {
   const [login, setlogin] = useState({
     email: "",
@@ -83,17 +109,7 @@ function Login() {
                   Email
                 </label>
                 <input
-                  css={css`
-                    min-width: 200px;
-                    padding: 10px;
-                    padding-left: 10px;
-                    margin-bottom: 15px;
-                    outline: none;
-                    border: 1px solid rgba(0, 0, 0, 0.24);
-                    font-family: sans-serif;
-                    border-radius: 2px;
-                    font-size: 15px;
-                  `}
+                  css={Input}
                   className="input"
                   type="email"
                   name="email"
@@ -115,17 +131,7 @@ function Login() {
                   Password
                 </label>
                 <input
-                  css={css`
-                    min-width: 200px;
-                    padding: 10px;
-                    padding-left: 10px;
-                    margin-bottom: 15px;
-                    outline: none;
-                    border: 1px solid rgba(0, 0, 0, 0.24);
-                    font-family: sans-serif;
-                    border-radius: 2px;
-                    font-size: 15px;
-                  `}
+                  css={Input}
                   type="password"
                   name="password"
                   placeholder="password"
@@ -134,23 +140,7 @@ function Login() {
                 />
               </Form.Field>
 
-              <Button
-                type="submit"
-                css={css`
-                  justify-content: center;
-                  width: 30%;
-                  margin-bottom: 10px;
-                  margin-left: 30%;
-
-                  padding: 10px;
-                  border-radius: 10px;
-                  cursor: pointer;
-                  &:hover {
-                    background-color: rgba(0, 0, 0, 0.24);
-                    color: #fff;
-                  }
-                `}
-              >
+              <Button type="submit" css={BUTTON}>
                 Submit
               </Button>
             </Form>
