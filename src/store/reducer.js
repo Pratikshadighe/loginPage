@@ -1,6 +1,9 @@
 const initialState = {
   users: [],
   arr: [],
+
+  email: "",
+  password: "",
 };
 
 export const reducer = (state = initialState, action) => {
@@ -10,10 +13,28 @@ export const reducer = (state = initialState, action) => {
         ...state,
         users: [...state.users, action.payload],
       };
-    case "UPDATE": {
+    case "UPDATE":
       return {
         ...state,
         arr: [...state.arr, action.payload],
+      };
+    // case "INPUT_CHANGE_EMAIL":
+    //   return Object.assign({}, state, {
+    //     email: action.email,
+    //     // password: action.password,
+    //   });
+    // case "INPUT_CHANGE_PASS":
+    //   return Object.assign({}, state, {
+    //     password: action.password,
+    //   });
+    case "INPUT_CHANGE": {
+      const { fieldName, value } = action.payload;
+      return {
+        ...state,
+        // address: {
+        //   ...state.address,
+        // },
+        [fieldName]: value,
       };
     }
 

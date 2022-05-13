@@ -5,11 +5,9 @@ import "./App.css";
 
 import Login from "./Login";
 
-// import Valid from "./Valid";
-// import Main from "./main";
-
 function App() {
-  const users = useSelector((state) => state.reducer.users);
+  const email = useSelector((state) => state.reducer.email);
+  const password = useSelector((state) => state.reducer.password);
 
   return (
     <div>
@@ -17,19 +15,22 @@ function App() {
         <label className="div">Email</label>
         <label className="div">Password</label>
       </div>
+      <div className="container">
+        <li>{email}</li>
+        <li>{password}</li>
+      </div>
 
-      {users.map((user) => {
+      {/* {users.map((user) => {
         return (
           <div className="container" key={user.id}>
-            <li>{user.login.email}</li>
+            <li>{user.email}</li>
 
-            <li>{user.login.password}</li>
+            <li>{user.password}</li>
           </div>
         );
-      })}
+      })} */}
       <Login />
     </div>
-    // <Main />
   );
 }
 

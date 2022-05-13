@@ -1,9 +1,19 @@
-export const loginPage = (login) => {
+export const inputChange = (name, value) => {
+  return {
+    type: "INPUT_CHANGE",
+    payload: {
+      fieldName: name,
+      value,
+    },
+  };
+};
+export const loginPage = (email, password) => {
   return {
     type: "LOGIN",
     payload: {
       id: new Date().getTime(),
-      login,
+      email,
+      password,
     },
   };
 };

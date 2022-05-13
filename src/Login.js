@@ -1,152 +1,83 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Form } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
-import { useDispatch } from "react-redux";
-// import "./Login.css";
+import { connect, useDispatch, useSelector } from "react-redux";
+
 /** @jsxImportSource @emotion/react */
 // import { css } from "@emotion/react";
 import { loginStyle } from "./loginStyle";
-import { loginPage, update } from "./store/action";
-// const Input = css`
-//   min-width: 200px;
-//   padding: 10px;
-//   padding-left: 10px;
-//   margin-bottom: 15px;
-//   outline: none;
-//   border: 1px solid rgba(0, 0, 0, 0.24);
-//   font-family: sans-serif;
-//   border-radius: 2px;
-//   font-size: 15px;
-// `;
-
-// const BUTTON = css`
-//   justify-content: center;
-//   width: 30%;
-//   margin-bottom: 10px;
-//   margin-left: 30%;
-
-//   padding: 10px;
-//   border-radius: 10px;
-//   cursor: pointer;
-//   &: hover {
-//     background-color: rgba(0, 0, 0, 0.24);
-//   }
-// `;
+import { inputChange } from "./store/action";
 
 function Login() {
-  const [login, setlogin] = useState({
-    email: "",
-    password: "",
+  // const [login, setlogin] = useState({
+  //   email: "",
+  //   password: "",
+  // });
+
+  const data = useSelector((state) => {
+    return state;
   });
   const dispatch = useDispatch();
 
-  const handlechange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+  function handleChange(e) {
+    const { name, value } = e.target;
+    dispatch(inputChange(name, value));
+    // const action = {
+    //   type: "INPUT_CHANGE",
+    //   payload: {
+    //     fieldName: name,
+    //     value,
+    //   },
+    // };
+    // dispatch(action);
+  }
 
-    console.log(name, value);
-    setlogin({ ...login, [name]: value });
-    dispatch(update(setlogin));
-  };
+  // const handlechange = (e) => {
+  //   const name = e.target.name;
+  //   const value = e.target.value;
+
+  //   console.log(name, value);
+  //   setlogin({ ...login, [name]: value });
+  //   // dispatch(update(setlogin));
+  // };
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    dispatch(loginPage(login));
-    setlogin({ email: "", password: "" });
+    // dispatch(loginPage(props.email, props.password));
+
+    // setlogin({ email: "", password: "" });
   };
 
   return (
     <>
-      <div
-        css={loginStyle}
-        // css={css`
-        //   display: flex;
-        //   flex-direction: column;
-        //   justify-content: center;
-        //   height: 100vh;
-        //   align-items: center;
-        //   font-family: sans-serif;
-        // `}
-      >
-        <Grid
-          id="container"
-          // css={css`
-          //   width: 30%;
-          //   height: 50%;
-          //   display: flex;
-          //   justify-content: center;
-
-          //   box-shadow: 5px 10px 18px gray;
-          // `}
-        >
+      <div css={loginStyle}>
+        <Grid id="container">
           <Grid.Column className="grid" mobile={16} tablet={8} computer={4}>
-            <h2
-            // css={css`
-            //   font-size: 32px;
-            //   margin-bottom: 15px;
-            //   padding-bottom: 10px;
-            //   letter-spacing: -1px;
-            //   margin-left: 30%;
-            // `}
-            >
-              Login
-            </h2>
+            <h2>Login</h2>
 
-            <Form
-              className="form"
-              onSubmit={handlesubmit}
-              // css={css`
-              //   display: flex;
-              //   flex-direction: column;
-              //   justify-content: center;
-              // `}
-            >
-              <Form.Field
-                className=".field"
-                // css={css`
-                //   margin-left: 10%;
-                // `}
-              >
-                <label
-                  className="label"
-                  // css={css`
-                  //   margin: 10px;
-                  // `}
-                >
-                  Email
-                </label>
+            <Form className="form" onSubmit={handlesubmit}>
+              <Form.Field className=".field">
+                <label className="label">Email</label>
                 <input
-                  // css={Input}
                   className="input"
                   type="email"
                   name="email"
                   placeholder="email"
-                  value={login.email}
-                  onChange={handlechange}
+                  // value={login.email}
+                  value={data.email}
+                  onChange={handleChange}
                 />
               </Form.Field>
-              <Form.Field
-                className="field"
-                // css={css`
-                //   margin-left: 10%;
-                // `}
-              >
-                <label
-                  className="label"
-                  // css={css`
-                  //   margin: 10px;
-                  // `}
-                >
-                  Password
-                </label>
+              <Form.Field className="field">
+                <label className="label">Password</label>
                 <input
-                  // css={Input}
                   className="input"
                   type="password"
                   name="password"
                   placeholder="password"
-                  value={login.password}
-                  onChange={handlechange}
+                  // value={login.password}
+                  value={data.password}
+                  onChange={handleChange}
                 />
               </Form.Field>
 
@@ -161,4 +92,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default connect()(Login);
