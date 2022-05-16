@@ -7,14 +7,10 @@ export const inputChange = (name, value) => {
     },
   };
 };
-export const loginPage = (email, password) => {
+export const loginPage = (payload) => {
   return {
     type: "LOGIN",
-    payload: {
-      id: new Date().getTime(),
-      email,
-      password,
-    },
+    payload,
   };
 };
 
@@ -23,6 +19,15 @@ export const update = (setlogin) => {
     type: "UPDATE",
     payload: {
       setlogin,
+    },
+  };
+};
+export const register = (Register) => {
+  return {
+    type: "REGISTER",
+    payload: {
+      id: new Date().getTime(),
+      Register,
     },
   };
 };

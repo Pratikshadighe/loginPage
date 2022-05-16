@@ -1,6 +1,7 @@
 const initialState = {
   users: [],
   arr: [],
+  loggedInUser: false,
 
   email: "",
   password: "",
@@ -8,10 +9,16 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case "REGISTER":
       return {
         ...state,
         users: [...state.users, action.payload],
+      };
+    case "LOGIN":
+      return {
+        ...state,
+
+        user: action.payload,
       };
     case "UPDATE":
       return {

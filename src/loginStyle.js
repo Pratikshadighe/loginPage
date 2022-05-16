@@ -9,7 +9,7 @@ export const loginStyle = css`
 
   #container {
     width: 30%;
-    height: 60%;
+    height: 70%;
     display: flex;
     justify-content: center;
     
@@ -48,6 +48,9 @@ export const loginStyle = css`
           border-radius: 2px;
           font-size: 15px;
         }
+      }
+      p{
+        color:red;
       }
         .btn {
           justify-content: center;

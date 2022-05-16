@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
 import { connect, useDispatch, useSelector } from "react-redux";
@@ -6,18 +6,31 @@ import { connect, useDispatch, useSelector } from "react-redux";
 /** @jsxImportSource @emotion/react */
 // import { css } from "@emotion/react";
 import { loginStyle } from "./loginStyle";
-import { inputChange } from "./store/action";
+import { inputChange, loginPage } from "./store/action";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   // const [login, setlogin] = useState({
   //   email: "",
   //   password: "",
   // });
+  const [formError, setFormError] = useState({});
+  // const [isSubmit, setIsSubmit] = useState(false);
 
-  const data = useSelector((state) => {
-    return state;
-  });
+  let navigate = useNavigate();
+  // history.push('/Dashboard')
+
+  // const data = useSelector((state) => {
+  //   return state;
+  // });
+  const email = useSelector((state) => state.reducer.email);
+  console.log(email);
+  const password = useSelector((state) => state.reducer.password);
+  console.log(password);
   const dispatch = useDispatch();
+
+  const loggedInUser = useSelector((state) => state.reducer.loggedInUser);
+  console.log(loggedInUser);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -43,9 +56,55 @@ function Login() {
 
   const handlesubmit = (e) => {
     e.preventDefault();
+    setFormError(validate(email, password));
+    // setIsSubmit(true);
+    console.log(validate(email, password));
+    console.log(
+      localStorage.getItem("email") === email &&
+        localStorage.getItem("password") === password
+    );
+
+    if (
+      localStorage.getItem("email") === email &&
+      localStorage.getItem("password") === password
+    ) {
+      dispatch(loginPage());
+      alert("sucess!!");
+      navigate("/Dashboard");
+    } else {
+      alert("wrong");
+    }
+
     // dispatch(loginPage(props.email, props.password));
 
     // setlogin({ email: "", password: "" });
+  };
+  useEffect(() => {
+    console.log(localStorage.getItem("email"));
+    // if (Object.keys(formError).length === 0 && isSubmit) {
+    //   console.log(email);
+    //   console.log(password);
+    // }
+  }, [formError]);
+
+  const validate = (values) => {
+    const errors = {};
+
+    const validateEmail = (email) => {
+      return String(email)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    };
+    if (!validateEmail(email)) {
+      errors.email = "email is not valid";
+    }
+
+    if (!values.password) {
+      errors.password = "password is required";
+    }
+    return errors;
   };
 
   return (
@@ -64,10 +123,12 @@ function Login() {
                   name="email"
                   placeholder="email"
                   // value={login.email}
-                  value={data.email}
+                  value={email}
+                  // required
                   onChange={handleChange}
                 />
               </Form.Field>
+              <p>{formError.email}</p>
               <Form.Field className="field">
                 <label className="label">Password</label>
                 <input
@@ -76,10 +137,12 @@ function Login() {
                   name="password"
                   placeholder="password"
                   // value={login.password}
-                  value={data.password}
+                  value={password}
+                  // required
                   onChange={handleChange}
                 />
               </Form.Field>
+              <p>{formError.password}</p>
 
               <Button type="submit" className="btn">
                 Submit
