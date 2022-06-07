@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
 import { connect, useDispatch, useSelector } from "react-redux";
+import { loginUser } from "./store/action";
 
 /** @jsxImportSource @emotion/react */
 // import { css } from "@emotion/react";
 import { loginStyle } from "./loginStyle";
-import { inputChange, loginPage } from "./store/action";
+import { inputChange } from "./store/action";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -68,7 +69,7 @@ function Login() {
       localStorage.getItem("email") === email &&
       localStorage.getItem("password") === password
     ) {
-      dispatch(loginPage());
+      dispatch(loginUser());
       alert("sucess!!");
       navigate("/Dashboard");
     } else {

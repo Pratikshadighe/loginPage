@@ -1,0 +1,34 @@
+.Sidebar {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 4rem;
+  transition: all 300ms ease;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  font-weight: bold;
+  font-size: 22px;
+  gap: 1rem;
+}
+img {
+  width: 20%;
+  height: 60%;
+}
+.logo > span > span {
+  color: pink;
+}
+.menu {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

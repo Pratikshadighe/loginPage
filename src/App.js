@@ -1,4 +1,7 @@
 import React from "react";
+// import Promise from "./Promise";
+// import Call from "./Call";
+// import Home from "./Home";
 // import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 

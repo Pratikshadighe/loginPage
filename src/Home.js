@@ -1,11 +1,25 @@
 import React from "react";
+const students = [
+  { name: "Pratiksha", subject: "Javascript" },
+  { name: "Pratik", subject: "Machine" },
+  { name: "shubham", subject: "Jvascript" },
+];
 
 function Home() {
-    return (
+  return (
+    <>
       <div>
-        <h2>Home</h2>
+        {students.map((student) => {
+          return (
+            <div>
+              <li>{student.name}</li>
+              <li>{student.subject}</li>
+            </div>
+          );
+        })}
       </div>
-    );
-  }
+    </>
+  );
+}
 
-  export default Home;
+export default Home;

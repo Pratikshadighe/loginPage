@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const inputChange = (name, value) => {
   return {
     type: "INPUT_CHANGE",
@@ -29,5 +31,17 @@ export const register = (Register) => {
       id: new Date().getTime(),
       Register,
     },
+  };
+};
+
+export const loginUser = () => {
+  return function (dispatch) {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then((response) => {
+        console.log(response.data);
+        dispatch(loginPage());
+      })
+      .catch((error) => {});
   };
 };
